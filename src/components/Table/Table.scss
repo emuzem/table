@@ -30,15 +30,15 @@ body {
     width: 50px;
     height: 50px;
     position: absolute;
-    top: 30px;
-    left: 30px;
+    top: 40px;
+    left: 40px;
     cursor: pointer;
   }
 
   &__sum {
     background-color: #ab71f8;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,8 +47,8 @@ body {
 
   &__middle {
     background-color: #cda7ff;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,8 +66,12 @@ body {
   }
 
   &__legend {
+    margin: 10px;
     display: flex;
     justify-content: center;
+  }
+  &__explanation {
+    margin-top: 5px;
   }
 
 }
@@ -83,8 +87,8 @@ table {
 }
 
 tr, td {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   position: relative;
   opacity: 1;
   //animation: show 2s forwards;
@@ -94,10 +98,10 @@ tr, td {
 }
 
 .table__delete-icon {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   position: absolute;
-  left: -35px;
+  left: -40px;
   cursor: pointer;
   padding-top: 5px;
 
@@ -115,10 +119,11 @@ tr, td {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background-color: transparent;
   transition: all 0.5s;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 
   &:hover {
     background-color: #073094;

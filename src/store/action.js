@@ -24,7 +24,7 @@ export function createTable(M, N) {
             for (let j = 0; j < N; j++) {
                 row.push({
                     id: counter,
-                    value: Math.floor(Math.random() * 100),
+                    value: Math.floor(Math.random() * 900) + 100,
                 })
                 counter++
             }
@@ -49,7 +49,7 @@ export function addRow(M, N) {
         for (let i = 0; i < getState().N; i++) {
             row.push({
                 id: counter,
-                value: Math.floor(Math.random() * 100),
+                value: Math.floor(Math.random() * 900) + 100,
             })
             counter++
         }
