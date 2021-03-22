@@ -1,0 +1,8 @@
+export const CHANGE_N = 'CHANGE_N'
+export const CHANGE_M = 'CHANGE_M'
+export const CREATE_TABLE = 'CREATE_TABLE'
+export const ADD_M = 'ADD_M'
+export const COUNT_SUM = 'COUNT_SUM'
+export const COUNT_MIDDLE = 'COUNT_MIDDLE'
+export const SHOW_SIMILAR = 'SHOW_SIMILAR'
+export const CHANGE_Z = 'CHANGE_Z'

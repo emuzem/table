@@ -1,0 +1,58 @@
+@import "../../styles/colors";
+
+.settings {
+  position: fixed;
+  height: 80%;
+  width: 80%;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -20%);
+  background-color: $gray;
+  box-shadow: 10px 10px 10px $bright-violet;
+  border: solid 1px $bright-violet;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &__input__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    display: block;
+  }
+
+  &__btn {
+    border: none;
+    width: 70%;
+    padding: 10px;
+    background-color: $bright-violet;
+    margin: 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-5px);
+      background: transparent;
+      border: solid 1px $bright-violet;
+      box-shadow: 1px 10px 10px $bright-violet;
+    }
+  }
+}
+
+.settings__input {
+  box-shadow: 0 0 10px $bright-violet;
+  border: solid 1px $bright-violet;
+  background-color: $light-violet;
+  margin: 15px;
+  padding: 30px;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  line-height: 20px;
+}

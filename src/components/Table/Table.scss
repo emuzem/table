@@ -1,0 +1,126 @@
+@import "../../styles/colors";
+
+body {
+  margin: 0;
+  background-color: $light-violet;
+  padding: 20px 40px;
+  text-align: center;
+}
+
+.table {
+  width: auto;
+  min-height: 100vh;
+  //animation: grow 1s forwards;
+  //animation-delay: 0.5s;
+  display: block;
+  margin: 15vh auto;
+  background-color: $light-violet;
+  color: white;
+
+  &__cell-background {
+    background-color: rgba(100, 40, 181, .3);
+    position: absolute;
+    height: 0;
+    width: 100%;
+    bottom: 0;
+    transition: all 0.4s;
+  }
+
+  &__settings {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+  }
+
+  &__sum {
+    background-color: #ab71f8;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: center;
+  }
+
+  &__middle {
+    background-color: #cda7ff;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__add-row {
+    background: $bright-violet;
+    width: inherit;
+    color: white;
+    cursor: pointer;
+    border: solid 1px white;
+    outline: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+  }
+
+  &__legend {
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  position: relative;
+
+  tbody td {
+    text-align: center;
+  }
+}
+
+tr, td {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  opacity: 1;
+  //animation: show 2s forwards;
+  //animation-delay: 1s;
+  max-width: max-content;
+  border: solid 1px white;
+}
+
+.table__delete-icon {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: -35px;
+  cursor: pointer;
+  padding-top: 5px;
+
+  &:hover {
+    color: red;
+  }
+
+  &:active {
+    color: $bright-violet;
+  }
+}
+
+
+.table__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: all 0.5s;
+  width: 30px;
+  height: 30px;
+
+  &:hover {
+    background-color: #073094;
+  }
+}
