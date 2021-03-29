@@ -25,6 +25,8 @@ export function createTable(M, N) {
                 row.push({
                     id: counter,
                     value: Math.floor(Math.random() * 900) + 100,
+                    isHighlighted: false,
+                    percent: 0
                 })
                 counter++
             }
@@ -50,6 +52,8 @@ export function addRow(M, N) {
             row.push({
                 id: counter,
                 value: Math.floor(Math.random() * 900) + 100,
+                isHighlighted: false,
+                percent: 0
             })
             counter++
         }
@@ -136,11 +140,18 @@ export function showSimilar(value) {
         })
         values = clearSimilarFromExtra(values, Z)
 
-        document.querySelectorAll('.table__cell').forEach(el => {
-            if (values.includes(Math.abs(value - +el.textContent))) {
-                el.style.background = '#6428b5'
-            }
+        data.forEach(row => {
+            row.forEach(el => {
+                if (values.includes(Math.abs(value - el.value))) {
+                    el.isHighlighted = true
+                }
+            })
         })
+        dispatch({
+            type: CREATE_TABLE,
+            data
+        })
+        dispatch(changeSumAndMiddle(getState().tableData, getState().N))
     }
 }
 
@@ -155,37 +166,47 @@ export function clearSimilarFromExtra(values, Z) {
 }
 
 export function hideSimilar() {
-    return dispatch => {
-        document.querySelectorAll('.table__cell').forEach(el => {
-            el.style.background = '#bf8fff'
+    return (dispatch, getState) => {
+       const data = getState().tableData
+
+        data.forEach(row => {
+            row.forEach(el => {
+                el.isHighlighted = false
+            })
         })
     }
 }
 
 export function countPercents(M_index) {
     return (dispatch, getState) => {
-        getState().tableData[M_index].forEach(el => {
+        const data = getState().tableData
+        data[M_index].forEach(el => {
             el.percent = Math.round((el.value / getState().sum[M_index]) * 100) + '%'
         })
-        const parentSelector = document.querySelectorAll('.table__cell')
-
-        parentSelector.forEach((el) => {
-            if (+el.getAttribute('row') === M_index + 1) {
-                el.textContent = getState().tableData[M_index][el.getAttribute('column') - 1].percent
-                el.parentElement.querySelector('.table__cell-background').style.height = el.textContent
-            }
+        dispatch({
+            type: CREATE_TABLE,
+            data
         })
-
+        dispatch(changeSumAndMiddle(data, getState().N))
 
     }
 }
 
 export function hidePercents() {
     return (dispatch, getState) => {
-        document.querySelectorAll('.table__cell').forEach((el) => {
-            el.textContent = getState().tableData[el.getAttribute('row') - 1][el.getAttribute('column') - 1].value
-            el.parentElement.querySelector('.table__cell-background').style.height = 0
+        const data = getState().tableData
+
+        data.forEach(row => {
+            row.forEach(el => {
+                el.percent = 0
+            })
         })
+
+        dispatch({
+            type: CREATE_TABLE,
+            data
+        })
+        dispatch(changeSumAndMiddle(data, getState().N))
     }
 }
 

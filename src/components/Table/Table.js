@@ -29,20 +29,25 @@ function Table(props) {
 
 
     const genereteColumns = (data, M_index) => {
+
         return (
             <>
                 {
                     data.map((el, index) => {
+                        const classes = ['table__cell-container']
+                        if (el.isHighlighted){
+                            classes.push('highlighted')
+                        }
                         return (
                             <td key={index}>
-                                <div className='table__cell-container'>
+                                <div className={classes.join(' ')}>
                                     <div onMouseOver={props.showSimilar.bind(this, el.value)} row={M_index + 1}
                                          column={index + 1} value={el.value} percent={el.percent} id={el.id}
                                          onMouseLeave={props.hideSimilar}
                                          onClick={props.addOne.bind(this, props.tableData, el.id)}
                                          className='table__cell'
-                                    >{el.value}</div>
-                                    <div className='table__cell-background'></div>
+                                    >{el.percent === 0 ? el.value : el.percent}</div>
+                                    <div className='table__cell-background' style={{height: `${el.percent}`}}></div>
                                 </div>
                             </td>
                         )
