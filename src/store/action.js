@@ -36,11 +36,11 @@ export function createTable(M, N) {
             type: CREATE_TABLE,
             data: tableData
         })
-        dispatch(changeSumAndMiddle(tableData, N))
+        dispatch(changeSumAndMiddle())
     }
 }
 
-export function addRow(M, N) {
+export function addRow(M) {
     return (dispatch, getState) => {
         M += 1
         dispatch({
@@ -61,13 +61,14 @@ export function addRow(M, N) {
             type: ADD_M,
             row
         })
-        dispatch(changeSumAndMiddle(getState().tableData, N))
+        dispatch(changeSumAndMiddle())
 
     }
 }
 
-export function countSum(data) {
-    return dispatch => {
+export function countSum() {
+    return (dispatch, getState) => {
+        const data = [...getState().tableData]
         const sum = data.map(el => {
             let countSum = 0
             el.forEach(el => {
@@ -82,15 +83,17 @@ export function countSum(data) {
     }
 }
 
-function changeSumAndMiddle(data, N) {
+function changeSumAndMiddle() {
     return dispatch => {
-        dispatch(countSum(data))
-        dispatch(countMiddle(data, N))
+        dispatch(countSum())
+        dispatch(countMiddle())
     }
 }
 
-export function countMiddle(data, N) {
-    return dispatch => {
+export function countMiddle() {
+    return (dispatch, getState) => {
+        const data = [...getState().tableData]
+        const N = getState().N
         const middle = []
         for (let i = 0; i < N; i++) {
             const index = []
@@ -110,8 +113,9 @@ export function countMiddle(data, N) {
     }
 }
 
-export function addOne(data, id) {
+export function addOne(id) {
     return (dispatch, getState) => {
+        const data = [...getState().tableData]
         data.forEach(row => {
             row.map(el => {
                 if (el.id === id) {
@@ -124,14 +128,14 @@ export function addOne(data, id) {
             type: CREATE_TABLE,
             data
         })
-        dispatch(changeSumAndMiddle(getState().tableData, getState().N))
+        dispatch(changeSumAndMiddle())
     }
 }
 
 export function showSimilar(value) {
     return (dispatch, getState) => {
         const Z = getState().Z
-        const data = getState().tableData
+        const data = [...getState().tableData]
         let values = []
         data.forEach(row => {
             row.forEach(el => {
@@ -151,7 +155,6 @@ export function showSimilar(value) {
             type: CREATE_TABLE,
             data
         })
-        dispatch(changeSumAndMiddle(getState().tableData, getState().N))
     }
 }
 
@@ -167,19 +170,24 @@ export function clearSimilarFromExtra(values, Z) {
 
 export function hideSimilar() {
     return (dispatch, getState) => {
-       const data = getState().tableData
+        const data = [...getState().tableData]
 
         data.forEach(row => {
             row.forEach(el => {
                 el.isHighlighted = false
             })
         })
+
+        dispatch({
+            type: CREATE_TABLE,
+            data
+        })
     }
 }
 
 export function countPercents(M_index) {
     return (dispatch, getState) => {
-        const data = getState().tableData
+        const data = [...getState().tableData]
         data[M_index].forEach(el => {
             el.percent = Math.round((el.value / getState().sum[M_index]) * 100) + '%'
         })
@@ -187,14 +195,13 @@ export function countPercents(M_index) {
             type: CREATE_TABLE,
             data
         })
-        dispatch(changeSumAndMiddle(data, getState().N))
 
     }
 }
 
 export function hidePercents() {
     return (dispatch, getState) => {
-        const data = getState().tableData
+        const data = [...getState().tableData]
 
         data.forEach(row => {
             row.forEach(el => {
@@ -206,7 +213,6 @@ export function hidePercents() {
             type: CREATE_TABLE,
             data
         })
-        dispatch(changeSumAndMiddle(data, getState().N))
     }
 }
 
@@ -214,13 +220,13 @@ export function deleteRow(index) {
     return (dispatch, getState) => {
         changeM(getState().M - 1)
 
-        const data = getState().tableData
+        const data = [...getState().tableData]
         data.splice(index, 1)
         dispatch({
             type: CREATE_TABLE,
             data
         })
-        dispatch(changeSumAndMiddle(getState().tableData, getState().N))
+        dispatch(changeSumAndMiddle())
     }
 }
 

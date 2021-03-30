@@ -44,7 +44,7 @@ function Table(props) {
                                     <div onMouseOver={props.showSimilar.bind(this, el.value)} row={M_index + 1}
                                          column={index + 1} value={el.value} percent={el.percent} id={el.id}
                                          onMouseLeave={props.hideSimilar}
-                                         onClick={props.addOne.bind(this, props.tableData, el.id)}
+                                         onClick={props.addOne.bind(this, el.id)}
                                          className='table__cell'
                                     >{el.percent === 0 ? el.value : el.percent}</div>
                                     <div className='table__cell-background' style={{height: `${el.percent}`}}></div>
@@ -104,7 +104,7 @@ function Table(props) {
 
             </table>
             <button className='table__add-row' onClick={() => {
-                props.addRow(props.M, props.N)
+                props.addRow(props.M)
             }}>Додати рядок
             </button>
             <div className='table__legend'>
@@ -135,9 +135,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         getTableData: (M, N) => dispatch(createTable(M, N)),
-        addRow: (M, N) => dispatch(addRow(M, N)),
+        addRow: (M) => dispatch(addRow(M)),
         deleteRow: (index) => dispatch(deleteRow(index)),
-        addOne: (data, id) => dispatch(addOne(data, id)),
+        addOne: (id) => dispatch(addOne(id)),
         showSimilar: (value) => dispatch(showSimilar(value)),
         hideSimilar: () => dispatch(hideSimilar()),
         countPercents: (M_index) => dispatch(countPercents(M_index)),
