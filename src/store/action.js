@@ -218,7 +218,7 @@ export function hidePercents() {
 
 export function deleteRow(index) {
     return (dispatch, getState) => {
-        changeM(getState().M - 1)
+        dispatch(changeM(getState().M - 1))
 
         const data = [...getState().tableData]
         data.splice(index, 1)
